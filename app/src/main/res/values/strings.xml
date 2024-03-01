@@ -1,5 +1,6 @@
 
 <!-- Arquivo padrão do Android Studio no qual está cadastrada todas Strings da aplicação -->
+<!-- Esse arquivo representa o idioma padrão da aplicação -->
 
 <resources>
     <!-- TAGs do tipo strings. Será utilizado na padronização dos textos que serão utilizados na aplicação -->
