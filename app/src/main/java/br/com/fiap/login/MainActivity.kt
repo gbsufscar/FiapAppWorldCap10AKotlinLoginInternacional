@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -51,18 +52,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Login() {
 
+    // Variáveis de estado
     var email by remember() { mutableStateOf("") }
-
     var password by remember { mutableStateOf("") }
 
+    // Composição da tela de login
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
-            text = "Login",
+            text = stringResource(id = R.string.login), // Texto do arquivo strings.xml
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Blue
         )
-        Text(text = "Por favor entre com seus dados")
+        Text(text = stringResource(id = R.string.subtitle),)
         Spacer(
             modifier = Modifier
                 .height(48.dp)
@@ -82,7 +84,7 @@ fun Login() {
                     modifier = Modifier
                         .fillMaxWidth(),
                     label = {
-                        Text(text = "Digite o seu e-mail")
+                        Text(stringResource(id = R.string.email)) // Texto do arquivo strings.xml
                     },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email
@@ -98,7 +100,7 @@ fun Login() {
                     modifier = Modifier
                         .fillMaxWidth(),
                     label = {
-                        Text(text = "Digite a sua senha")
+                        Text(text = stringResource(id = R.string.password)) // Texto do arquivo strings.xml
                     },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password
@@ -108,7 +110,7 @@ fun Login() {
                 Spacer(modifier = Modifier.height(32.dp))
                 Button(onClick = { /*TODO*/ }) {
                     Text(
-                        text = "ENTRAR",
+                        text = stringResource(id = R.string.enter), // Texto do arquivo strings.xml
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxWidth(),

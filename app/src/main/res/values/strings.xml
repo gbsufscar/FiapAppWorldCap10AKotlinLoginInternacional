@@ -1,3 +1,13 @@
+
+<!-- Arquivo padrão do Android Studio no qual está cadastrada todas Strings da aplicação -->
+
 <resources>
+    <!-- TAGs do tipo strings. Será utilizado na padronização dos textos que serão utilizados na aplicação -->
     <string name="app_name">Login</string>
+    <string name="login">Login</string>
+    <string name="subtitle">Please, provide your information</string>
+    <string name="email">Enter your e-mail</string>
+    <string name="password">Enter your password</string>
+    <string name="enter">ENTER</string>
+
 </resources>
