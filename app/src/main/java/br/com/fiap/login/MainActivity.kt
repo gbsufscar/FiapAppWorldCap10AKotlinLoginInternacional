@@ -55,7 +55,10 @@ fun Login() {
     // Variáveis de estado
     var email by remember() { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var emailError by remember { mutableStateOf(false) } // Mantem o estado do erro do email. Inicialmente falso.
+
     var tamanhoSenha = 8 // Tamanho mínimo da senha
+
 
     // Composição da tela de login
     Column(modifier = Modifier.padding(16.dp)) {
@@ -81,16 +84,29 @@ fun Login() {
             ) {
                 OutlinedTextField(
                     value = email,
-                    onValueChange = { email = it },
+                    onValueChange = {
+                        email = it
+                        if(email.length > 0) emailError = false // Se o email não estiver vazio, o estado do erro do email é falso (não renderiza a mensagem de erro
+                                    },
                     modifier = Modifier
                         .fillMaxWidth(),
                     label = {
                         Text(stringResource(id = R.string.email)) // Texto do arquivo strings.xml
                     },
+                    isError = emailError, // Recebe o estado do erro do email do botão ENTRAR
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email
                     ),
                 )
+                // Mensagem de erro de preenchimento do email (renderiza se o email estiver vazio)
+                if (emailError) {
+                    Text(
+                        text = "O email é obrigatório!", // Mensagem de erro caso o email esteja vazio
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        color = Color.Red
+                    )
+                }
                 Spacer(
                     modifier = Modifier
                         .height(16.dp)
@@ -110,7 +126,12 @@ fun Login() {
                     visualTransformation = PasswordVisualTransformation()
                 )
                 Spacer(modifier = Modifier.height(32.dp))
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    if (email.isEmpty()) {
+                        emailError = true // Se o email estiver vazio, o estado do erro do email é verdadeiro
+                    }
+                }
+                ) {
                     Text(
                         text = stringResource(id = R.string.enter), // Texto do arquivo strings.xml
                         modifier = Modifier
