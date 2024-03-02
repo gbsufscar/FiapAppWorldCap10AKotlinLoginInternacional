@@ -55,6 +55,7 @@ fun Login() {
     // Variáveis de estado
     var email by remember() { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var tamanhoSenha = 8 // Tamanho mínimo da senha
 
     // Composição da tela de login
     Column(modifier = Modifier.padding(16.dp)) {
@@ -96,7 +97,8 @@ fun Login() {
                 )
                 OutlinedTextField(
                     value = password,
-                    onValueChange = { password = it },
+                    onValueChange = {
+                        if (it.length <= tamanhoSenha) password = it}, // Verifica se a senha tem o tamanho mínimo
                     modifier = Modifier
                         .fillMaxWidth(),
                     label = {
