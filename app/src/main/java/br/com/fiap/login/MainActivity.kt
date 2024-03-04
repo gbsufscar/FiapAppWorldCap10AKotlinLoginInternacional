@@ -56,6 +56,7 @@ fun Login() {
     var email by remember() { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var emailError by remember { mutableStateOf(false) } // Mantem o estado do erro do email. Inicialmente falso.
+    var passwordError by remember { mutableStateOf(false) } // Mantem o estado do erro do password. Inicialmente falso.
 
     var tamanhoSenha = 8 // Tamanho mínimo da senha
 
@@ -120,16 +121,27 @@ fun Login() {
                     label = {
                         Text(text = stringResource(id = R.string.password)) // Texto do arquivo strings.xml
                     },
+                    isError = passwordError,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password
                     ),
                     visualTransformation = PasswordVisualTransformation()
                 )
+                if (passwordError) {
+                    Text(
+                        text = "A senha é obrigatória!", // Mensagem de erro caso o password esteja vazio
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        color = Color.Red
+                    )
+                }
                 Spacer(modifier = Modifier.height(32.dp))
                 Button(onClick = {
-                    if (email.isEmpty()) {
-                        emailError = true // Se o email estiver vazio, o estado do erro do email é verdadeiro
-                    }
+                    //if (email.isEmpty()) {
+                    //    emailError = true // Se o email estiver vazio, o estado do erro do email é verdadeiro
+                    //}
+                    emailError = email.isEmpty(); // Se o email estiver vazio, o estado do erro do email é verdadeiro
+                    passwordError = password.isEmpty(); // Se o password estiver vazio, o estado do erro do password é verdadeiro
                 }
                 ) {
                     Text(
